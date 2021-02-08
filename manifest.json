@@ -1,0 +1,25 @@
+{
+    "name": "Highlight some phrases",
+    "description": "Hightlight some pre defined text after page loads",
+    "version": "0.1",
+    "permissions": [
+        "tabs","<all_urls>"  ,  "activeTab", "storage",
+        "downloads",
+        "declarativeContent"
+    ],
+    "content_scripts": [
+        {
+        "matches": [
+            "http://*/*",
+            "https://*/*"
+            ],
+        "js": ["main.js"],
+        "run_at": "document_end"   
+        }
+    ], 
+    "browser_action": {
+        "default_icon": "logo.png",
+        "default_popup": "main.html"
+	},
+    "manifest_version": 2
+}

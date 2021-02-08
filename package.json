@@ -1,0 +1,16 @@
+{
+  "name": "url-handler",
+  "version": "1.0.0",
+  "description": "<a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/pbokgdgkaaenccneanahifaakldannno\">![Try it now in CWS](https://raw.github.com/GoogleChrome/chrome-app-samples/master/tryitnowbutton.png \"Click here to install this sample from the Chrome Web Store\")</a>",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.4"
+  }
+}

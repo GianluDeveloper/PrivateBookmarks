@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #urls {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+      }
+
+      #urls div {
+        border: 1px dotted;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: rgb(248, 244, 244);
+      }
+      a:visited {
+        color: rgb(0, 0, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="urls"></div>
+    <script>
+      let numElem = 0;
+      const pullUrl = () => {
+        fetch("/api?_=" + new Date().getTime())
+          .then((j) => j.json())
+          .then((d) => {
+            if (d.length == numElem) {
+              setTimeout(() => {
+                pullUrl();
+              }, 1000);
+              return;
+            }
+            console.log("updating");
+            numElem = d.length;
+            document.getElementById("urls").innerHTML = "";
+            d.reverse().forEach((e) => {
+              const div = document.createElement("div");
+              const a = document.createElement("a");
+              a.href = e.url;
+              a.title = e.url;
+              a.innerText = e.title;
+              a.target = "_blank";
+              div.appendChild(a);
+              document.getElementById("urls").appendChild(div);
+            });
+            setTimeout(() => {
+              pullUrl();
+            }, 1000);
+          });
+      };
+      pullUrl();
+    </script>
+  </body>
+</html>
