@@ -18,10 +18,10 @@ const handleBookmark = () => {
 
   const test = () => {
     chrome.tabs.getSelected(null, function (tab) {
-      const scriptToExec = `(${returnHtml})()`;
+      const scriptToExec = `returnHtml()`;
 
       chrome.tabs.executeScript(tab.id, { code: scriptToExec }, (scraped) => {
-        window.Html = scraped[0];
+        window.Html = scraped;
       });
     });
 
